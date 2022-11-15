@@ -24,6 +24,16 @@ h1 {
     font-weight: 700;
 }
 
+p {
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--neutral-charcoal);
+}
+
+.text-royal-blue-4 {
+    color: var(--accent-royal-blue-4);
+}
+
 @media (min-width: 1024px) {
     h1 {
         font-size: 24px;

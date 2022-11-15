@@ -12,6 +12,9 @@
     "nuxt": "3.0.0-rc.13"
   },
   "dependencies": {
-    "json-server": "^0.17.1"
+    "@vee-validate/rules": "^4.7.3",
+    "json-server": "^0.17.1",
+    "vee-validate": "^4.7.3",
+    "yup": "^0.32.11"
   }
 }
