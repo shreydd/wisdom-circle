@@ -1,0 +1,28 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "username": "John",
+        "emailID": "john@gmail.com",
+        "password": "123ASD123qwe"
+      },
+      {
+        "id": 2,
+        "username": "James",
+        "emailID": "james@gmail.com",
+        "password": "ASD345qwe_"
+      },
+      {
+        "username": "Jindhal",
+        "emailID": "jindhal@gmail.com",
+        "id": 3,
+        "password": "iop_123ASD"
+      },
+      {
+        "username": "Jarvis",
+        "emailID": "jarvis@gmail.com",
+        "id": 4,
+        "password": "testPassword123"
+      }
+    ]
+  }
