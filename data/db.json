@@ -5,28 +5,28 @@
         "username": "John",
         "emailID": "john@gmail.com",
         "password": "123ASD123qwe",
-        "phNo": "123456789"
+        "phNo": "12345678901"
       },
       {
         "id": 2,
         "username": "James",
         "emailID": "james@gmail.com",
         "password": "ASD345qwe_",
-        "phNo": "123456789"
+        "phNo": "9988776644"
       },
       {
         "username": "Jindhal",
         "emailID": "jindhal@gmail.com",
         "id": 3,
         "password": "iop_123ASD",
-        "phNo": "123456789"
+        "phNo": "51234567"
       },
       {
         "username": "Jarvis",
         "emailID": "jarvis@gmail.com",
         "id": 4,
         "password": "testPassword123",
-        "phNo": "123456789"
+        "phNo": "1234567890"
       }
     ]
   }
