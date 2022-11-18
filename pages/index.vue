@@ -1,26 +1,44 @@
 <template>
   <section class="grid xl:grid-cols-12">
-    <section class="hidden xl:flex col-span-5 h-screen bg-neutral-grey flex-col">
+    <section
+      class="hidden xl:flex col-span-5 h-screen bg-neutral-grey flex-col"
+    >
+      <div class="h-1/2 flex justify-center">
+        <img
+          src="../assets/images/wc-logo-desktop.svg"
+          alt="wisdom circle logo"
+          class="max-h-40 mt-28"
+        />
+      </div>
 
-        <div class="h-1/2 flex justify-center">
-            <img src="../assets/images/wc-logo-desktop.svg" alt="wisdom circle logo" class="max-h-40 mt-28">
+      <section class="flex flex-1">
+        <img
+          src="../assets/images/mascot_pose.svg"
+          class="max-h-38 flex self-end"
+          alt="posing mascot"
+        />
+
+        <div class="flex flex-col justify-between">
+          <div class="">
+            <h1 class="text-white mb-3">Welcome back!</h1>
+            <p class="text-white">
+              Sign In to find opportunities that match your interests. We have
+              both part-time and full-time roles that can be done online and
+              in-person.
+            </p>
+          </div>
+
+          <img
+            src="../assets/images/dotted_lines.svg"
+            class="basis-0 self-start"
+            alt="dotted lines"
+          />
+          <small class="mb-6 text-white"
+            >Please contact us at <b>+91-9380644532</b> if you need any
+            assistance.</small
+          >
         </div>
-        
-        <section class="flex flex-1">
-
-            <img src="../assets/images/mascot_pose.svg" class="max-h-38 flex self-end" alt="posing mascot">
-            
-            <div class="flex flex-col justify-between">
-                <div class="">
-                    <h1 class="text-white mb-3">Welcome back!</h1>
-                    <p class="text-white">Sign In to find opportunities that match your interests. We have both part-time and full-time roles that can be done online and in-person.</p>
-                </div>
-                
-                    <img src="../assets/images/dotted_lines.svg" class="basis-0 self-start" alt="dotted lines">
-                    <small class="mb-6 text-white">Please contact us at <b>+91-9380644532</b> if you need any assistance.</small>
-            </div>
-        </section>
-
+      </section>
     </section>
 
     <section
@@ -78,7 +96,8 @@
 
 <script setup>
 import { email, numeric } from "@vee-validate/rules";
-
+// import useRouter from "vue-router"
+const router = useRouter();
 let validUsers = [];
 let userExists = false;
 
@@ -96,7 +115,7 @@ const PhoneOrEmailRules = (val) => {
           if (val.toString().length === 10) {
             return true;
           } else {
-            return "not a valid Indian phone number";
+            return "not a valid Indian Phone number";
           }
         }
 
@@ -126,56 +145,12 @@ const submitHandler = async (formValues, actions) => {
       validUsers = response._data;
     },
   });
+  
+  userExists = await validateUser(formValues, actions, userExists, users._rawValue);
 
-  validateUser(formValues, actions);
-  //   TODO: reset form after submission or move to next page?
-};
-
-const validateUser = (formValues, actions) => {
-  userExists = false;
-  // check if email and user email ID exists
-  if (email(formValues.phoneOrEmail)) {
-    for (const validUser of validUsers) {
-      if (validUser.emailID === formValues.phoneOrEmail) {
-        if (validUser.password === formValues.password) {
-          userExists = true;
-          console.log("log in email");
-          break;
-        } else {
-          actions.setFieldError("password", "wrong password");
-          break;
-        }
-      }
-    }
-    if (userExists == false) {
-      actions.setFieldError(
-        "phoneOrEmail",
-        "Sorry! This Email ID does not exist"
-      );
-    }
-  }
-
-  // check if ph no and user ph no exists
-  else if (numeric(formValues.phoneOrEmail)) {
-    for (const validUser of validUsers) {
-      if (validUser.phNo === formValues.phoneOrEmail) {
-        if (validUser.password === formValues.password) {
-          userExists = true;
-          console.log("log in ph no");
-          break;
-        } else {
-          actions.setFieldError("password", "wrong password");
-          break;
-        }
-      }
-    }
-    if (userExists == false) {
-      // re do this
-      actions.setFieldError(
-        "phoneOrEmail",
-        "Sorry this phone number does not exist"
-      );
-    }
+  //   if user exists then go to home page
+  if (userExists) {
+    router.push({ path: "/home/" });
   }
 };
 </script>
