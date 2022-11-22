@@ -92,7 +92,6 @@
 
 <script setup>
 import { email, numeric } from "@vee-validate/rules";
-// import useRouter from "vue-router"
 const router = useRouter();
 let userExists;
 
@@ -134,7 +133,6 @@ const PhoneOrEmailRules = (val) => {
 };
 
 const submitHandler = async (formValues, actions) => {
-  
   // send request to check if user exists  
   userExists = await validateUser(formValues, actions, userExists);
 

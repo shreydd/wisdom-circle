@@ -1,5 +1,3 @@
-import { email, numeric } from "@vee-validate/rules";
-
 export const validateUser = async (formValues, actions, userExists) => {
 
     let userData = JSON.stringify({
