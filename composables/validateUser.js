@@ -19,7 +19,7 @@ export const validateUser = async (formValues, actions, userExists) => {
         .then(result => {
             result = JSON.parse(result);
             if (result.error == 'email'){
-                console.log(result.error)
+                // console.log(result.error)
                 actions.setFieldError("phoneOrEmail", "Sorry! this email ID is not registered")
             }
             else if (result.error == 'phone') {
