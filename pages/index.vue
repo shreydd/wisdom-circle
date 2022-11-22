@@ -70,6 +70,7 @@
           :rules="PhoneOrEmailRules"
           class=""
           placeholder="Phone number or Email"
+          validateOnInput
         />
         <VErrorMessage
           name="phoneOrEmail"
@@ -77,13 +78,8 @@
           class="text-red-600"
         ></VErrorMessage>
 
-        <VField
-          name="password"
-          type="password"
-          rules="passwordRules"
-          class=""
-          placeholder="Password"
-        />
+        <VField name="password" type="password" rules="passwordRules" class="" placeholder="Password" validateOnInput>
+        </VField>
         <VErrorMessage name="password" class="text-red-600"></VErrorMessage>
 
         <p class="text-royal-blue-4 font-bold text-right">Forgot Password</p>
@@ -98,8 +94,7 @@
 import { email, numeric } from "@vee-validate/rules";
 // import useRouter from "vue-router"
 const router = useRouter();
-let validUsers = [];
-let userExists = false;
+let userExists;
 
 const PhoneOrEmailRules = (val) => {
   // if val exists
@@ -139,14 +134,9 @@ const PhoneOrEmailRules = (val) => {
 };
 
 const submitHandler = async (formValues, actions) => {
-  // get existing users
-  const { data: users } = await useFetch("http://localhost:5000/users", {
-    onResponse({ request, response, options }) {
-      validUsers = response._data;
-    },
-  });
   
-  userExists = await validateUser(formValues, actions, userExists, users._rawValue);
+  // send request to check if user exists  
+  userExists = await validateUser(formValues, actions, userExists);
 
   //   if user exists then go to home page
   if (userExists) {
